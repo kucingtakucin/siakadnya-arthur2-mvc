@@ -4,6 +4,7 @@ use Core\App\Controller;
 class Home extends Controller {
 
     public function index(): void {
-        $this->view(__CLASS__ . '/' . __METHOD__);
+        $data['title'] = 'Home';
+        $this->view(__CLASS__ . '/index', $data);
     }
 }
