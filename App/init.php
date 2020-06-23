@@ -1,2 +1,1 @@
-<?php
-require_once "../System/Core/autoload.php";
+<?php require_once "../System/Core/autoload.php";
