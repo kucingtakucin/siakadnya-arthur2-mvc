@@ -1,5 +1,6 @@
 <?php
 namespace Core\App;
+
 abstract class Controller {
 
     /**
@@ -12,7 +13,8 @@ abstract class Controller {
      * @return object
      */
     public function model(string $model): object {
-        require_once "../App/Models/{$model}.php";
+        require_once "../App/Models/{$model}Model.php";
+        $model = "{$model}Model";
         return new $model();
     }
 

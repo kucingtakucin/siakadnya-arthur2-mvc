@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= /** @var array $data */ $data['title'] ?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= BASE_URL ?>css/style.css">
 </head>
 <body>
 <header>
@@ -23,6 +24,8 @@
                     <a class="nav-item nav-link" href="<?= BASE_URL ?>Mahasiswa">Mahasiswa</a>
                 </div>
             </div>
+            <a href="login.php" class="btn btn-outline-success mr-2">Login</a>
+            <a href="register.php" class="btn btn-outline-primary ml-2">Register</a>
         </div>
     </nav>
 </header>

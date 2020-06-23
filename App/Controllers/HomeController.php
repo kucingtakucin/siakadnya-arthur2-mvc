@@ -1,7 +1,7 @@
 <?php
 use Core\App\Controller;
 
-class Home extends Controller {
+class HomeController extends Controller {
 
     public function index(): void {
         // TODO: Implement index() method.
@@ -10,6 +10,6 @@ class Home extends Controller {
             'nama' => 'Adam',
             'panggil' => 'Arthur'
         ];
-        $this->view(__CLASS__ . '/index', $data);
+        $this->view('Home/index', $data);
     }
 }

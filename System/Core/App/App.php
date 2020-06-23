@@ -2,7 +2,7 @@
 namespace Core\App;
 
 class App {
-    protected $controller = 'Home';
+    protected $controller = 'HomeController';
     protected string $method = 'index';
     protected array $params = [];
 
@@ -11,13 +11,12 @@ class App {
      */
     public function __construct(){
         $url = $this->parseUrl();
-        if (isset($url[0]) and file_exists("../App/Controllers/{$url[0]}.php")):
-            $this->controller = $url[0];
+        if (isset($url[0]) and file_exists("../App/Controllers/{$url[0]}Controller.php")):
+            $this->controller = "{$url[0]}Controller";
             unset($url[0]);
         endif;
         require_once "../App/Controllers/{$this->controller}.php";
         $this->controller = new $this->controller();
-
         if (isset($url[1]) and method_exists($this->controller, $url[1])):
             $this->method = $url[1];
             unset($url[1]);
