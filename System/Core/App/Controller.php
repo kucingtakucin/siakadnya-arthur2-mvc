@@ -2,6 +2,20 @@
 namespace Core\App;
 
 abstract class Controller {
+    protected string $className;
+
+    /**
+     * Controller constructor.
+     */
+    public function __construct(){
+        if (isset($_SERVER['REDIRECT_URL'])):
+            $this->className = explode('/', $_SERVER['REDIRECT_URL'])[2];
+            if (!file_exists("../App/Controllers/{$this->className}Controller.php")):
+                $this->className = 'Home';
+            endif;
+        else: $this->className = 'Home';
+        endif;
+    }
 
     /**
      * @return mixed
@@ -9,12 +23,11 @@ abstract class Controller {
     abstract public function index();
 
     /**
-     * @param string $model
      * @return object
      */
-    public function model(string $model): object {
-        require_once "../App/Models/{$model}Model.php";
-        $model = "{$model}Model";
+    public function model(): object {
+        require_once "../App/Models/{$this->className}Model.php";
+        $model = "{$this->className}Model";
         return new $model();
     }
 
@@ -24,7 +37,7 @@ abstract class Controller {
      */
     public function view(string $view, array $data = []): void{
         require_once "../App/Views/Templates/header.php";
-        require_once "../App/Views/{$view}.php";
+        require_once "../App/Views/{$this->className}/{$view}.php";
         require_once "../App/Views/Templates/footer.php";
     }
 }

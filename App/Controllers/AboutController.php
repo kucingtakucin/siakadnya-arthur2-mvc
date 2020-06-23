@@ -8,6 +8,6 @@ class AboutController extends Controller {
         $data = [
             'title' => 'About Page'
         ];
-        $this->view('About/index', $data);
+        $this->view('index', $data);
     }
 }

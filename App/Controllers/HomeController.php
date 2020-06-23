@@ -10,6 +10,6 @@ class HomeController extends Controller {
             'nama' => 'Adam',
             'panggil' => 'Arthur'
         ];
-        $this->view('Home/index', $data);
+        $this->view('index', $data);
     }
 }

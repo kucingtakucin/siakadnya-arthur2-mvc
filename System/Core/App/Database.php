@@ -8,7 +8,7 @@ class Database {
     private string $username = 'root';
     private string $password = 'namaku123';
     private string $database = 'phpdasar';
-    private $dbh, $stmt;
+    private $db_handler, $statement;
 
     /**
      * Database constructor.
@@ -20,7 +20,7 @@ class Database {
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
         try {
-            $this->dbh = new PDO($data_source_name, $this->username, $this->password, $options);
+            $this->db_handler = new PDO($data_source_name, $this->username, $this->password, $options);
         } catch (PDOException $exception) {
             die($exception->getMessage());
         }
@@ -30,7 +30,7 @@ class Database {
      * @param string $query
      */
     public function query(string $query): void {
-        $this->stmt = $this->dbh->prepare($query);
+        $this->statement = $this->db_handler->prepare($query);
     }
 
     /**
@@ -54,11 +54,11 @@ class Database {
                     $type = PDO::PARAM_STR;
             }
         endif;
-        $this->stmt->bindValue($param, $value, $type);
+        $this->statement->bindValue($param, $value, $type);
     }
 
     public function execute(): void {
-        $this->stmt->execute();
+        $this->statement->execute();
     }
 
     /**
@@ -66,7 +66,7 @@ class Database {
      */
     public function fetchAll(): array {
         $this->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -74,6 +74,13 @@ class Database {
      */
     public function fetch(): array {
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * @return int
+     */
+    public function rowCount(): int {
+        return $this->statement->rowCount();
     }
 }
