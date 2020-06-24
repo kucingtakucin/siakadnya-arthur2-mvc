@@ -30,7 +30,7 @@ class Database {
     /**
      * @param string $query
      */
-    public function query(string $query): void {
+    public function prepare(string $query): void {
         $this->statement = $this->db_handler->prepare($query);
     }
 
@@ -66,7 +66,6 @@ class Database {
      * @return array
      */
     public function fetchAll(): array {
-        $this->execute();
         return $this->statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -74,7 +73,6 @@ class Database {
      * @return array
      */
     public function fetch(): array {
-        $this->execute();
         return $this->statement->fetch(PDO::FETCH_ASSOC);
     }
 

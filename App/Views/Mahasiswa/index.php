@@ -14,6 +14,20 @@
             Insert
             </button>
         </section>
+        <section id="search">
+            <div class="row">
+                <div class="col-lg-4">
+                    <form action="<?= BASE_URL ?>Mahasiswa" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" id="keyword" name="keyword" autocomplete="off" class="form-control" placeholder="Cari Mahasiswa" aria-label="Cari Mahasiswa" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-success" type="submit" id="search">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
         <section id="main">
             <table class="table table-striped">
                 <thead class="thead-dark">

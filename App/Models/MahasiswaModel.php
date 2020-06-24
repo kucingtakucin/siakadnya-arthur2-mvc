@@ -8,7 +8,7 @@ class MahasiswaModel extends Model {
      */
     public function add(): int {
         $query = "INSERT INTO {$this->tableName} (nama, nim, jurusan, angkatan, foto) VALUES (:nama, :nim, :jurusan, :angkatan, :foto)";
-        $this->db->query($query);
+        $this->db->prepare($query);
         $this->db->bind('nama', $_POST['nama']);
         $this->db->bind('nim', $_POST['nim']);
         $this->db->bind('jurusan', $_POST['jurusan']);
@@ -24,7 +24,7 @@ class MahasiswaModel extends Model {
      */
     public function save(): int {
         $query = "UPDATE {$this->tableName} SET nama = :nama, nim = :nim, jurusan = :jurusan, angkatan = :angkatan, foto = :foto WHERE id = :id";
-        $this->db->query($query);
+        $this->db->prepare($query);
         $this->db->bind('nama', $_POST['nama']);
         $this->db->bind('nim', $_POST['nim']);
         $this->db->bind('jurusan', $_POST['jurusan']);
@@ -67,5 +67,14 @@ class MahasiswaModel extends Model {
         $newfilename = uniqid($prefixfilename, true) . ".$fileextension";
         move_uploaded_file($tmpname, "img/$newfilename");
         return $newfilename;
+    }
+
+    public function look(): array {
+        $query = "SELECT * FROM {$this->tableName} WHERE nama LIKE :keyword OR nim LIKE :keyword OR jurusan LIKE :keyword OR angkatan LIKE :keyword";
+        $keyword = $_POST['keyword'];
+        $this->db->prepare($query);
+        $this->db->bind('keyword', "%$keyword%");
+        $this->db->execute();
+        return $this->db->fetchAll();
     }
 }

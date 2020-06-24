@@ -8,7 +8,7 @@ class MahasiswaController extends Controller {
         // TODO: Implement index() method.
         $data = [
             'title' => 'Daftar Mahasiswa',
-            'mahasiswa' => $this->model()->all()
+            'mahasiswa' => isset($_POST['keyword']) ? $this->model()->look() : $this->model()->all()
         ];
         $this->view('index', $data);
     }

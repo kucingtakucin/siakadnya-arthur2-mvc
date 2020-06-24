@@ -20,7 +20,8 @@ abstract class Model {
      */
     public function all(): array {
         $query = "SELECT * FROM {$this->tableName}";
-        $this->db->query($query);
+        $this->db->prepare($query);
+        $this->db->execute();
         return $this->db->fetchAll();
     }
 
@@ -30,8 +31,9 @@ abstract class Model {
      */
     public function single($id): array {
         $query = "SELECT * FROM {$this->tableName} WHERE id = :id";
-        $this->db->query($query);
+        $this->db->prepare($query);
         $this->db->bind('id', $id);
+        $this->db->execute();
         return $this->db->fetch();
     }
 
@@ -51,7 +53,7 @@ abstract class Model {
      */
     public function remove($id): int {
         $query = "DELETE FROM {$this->tableName} WHERE id = :id";
-        $this->db->query($query);
+        $this->db->prepare($query);
         $this->db->bind('id', $id);
         $this->db->execute();
         return $this->db->rowCount();
