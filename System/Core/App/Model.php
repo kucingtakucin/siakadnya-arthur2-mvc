@@ -41,10 +41,9 @@ abstract class Model {
     abstract public function add(): int;
 
     /**
-     * @param $id
      * @return int
      */
-    abstract public function save($id): int;
+    abstract public function save(): int;
 
     /**
      * @param $id

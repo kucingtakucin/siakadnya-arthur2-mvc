@@ -10,7 +10,7 @@
             <h1 class="display-4 text-center font-weight-bold">
                 Daftar Mahasiswa
             </h1>
-            <button type="button" class="btn btn-primary d-block m-auto font-weight-bold" data-toggle="modal" data-target="#insertModal">
+            <button type="button" class="btn btn-primary d-block m-auto font-weight-bold insert" data-toggle="modal" data-target="#formModal">
             Insert
             </button>
         </section>
@@ -40,45 +40,24 @@
                         <td><p><?= $student['jurusan'] ?></p></td>
                         <td><p><?= $student['angkatan'] ?></p></td>
                         <td class="d-flex flex-column align-items-center justify-content-center">
-                            <h5><a href="<?= BASE_URL ?>Mahasiswa/detail/<?= $student['id'] ?>" class="badge badge-info mb-2 mt-3">Detail</a></h5>
-                            <h5><a href="<?= BASE_URL ?>Mahasiswa/update/<?= $student['id'] ?>" class="badge badge-warning mt-2 mb-2">Update</a></h5>
-                            <h5><button type="button" class="btn badge badge-danger mt-2" data-toggle="modal" data-target="#deleteModal<?= $i ?>">Delete</button></h5>
+                            <h5><button type="button" class="btn badge badge-info mb-2 mt-3 detail" data-toggle="modal" data-target="#detailModal" data-id="<?= $student['id'] ?>">Detail</button></h5>
+                            <h5><a href="<?= BASE_URL ?>Mahasiswa/update/<?= $student['id'] ?>" class="badge badge-warning mt-2 mb-2 update" data-toggle="modal" data-target="#formModal" data-id="<?= $student['id'] ?>">Update</a></h5>
+                            <h5><button type="button" class="btn badge badge-danger mt-2 delete" data-toggle="modal" data-target="#deleteModal" data-id="<?= $student['id'] ?>">Delete</button></h5>
                         </td>
                     </tr>
-
-                    <!-- Delete Modal -->
-                    <div class="modal fade" id="deleteModal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?= $i ?>Label" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteModal<?= $i ?>Label">Delete Data Mahasiswa</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Apakah kamu yakin untuk menghapus data?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <a href="<?= BASE_URL ?>Mahasiswa/delete/<?= $student['id'] ?>" class="btn btn-primary">Delete Data</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <?php $i++; endforeach ?>
                 </tbody>
             </table>
         </section>
     </div>
 
-    <!-- Insert Modal -->
-    <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel" aria-hidden="true">
+    <!-- Insert & Update Modal -->
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="<?= BASE_URL ?>Mahasiswa/insert" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="insertModalLabel">Insert Data Mahasiswa</h5>
+                        <h5 class="modal-title" id="formModalLabel">Insert Data Mahasiswa</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -118,6 +97,66 @@
                         <button type="submit" class="btn btn-primary">Insert Data</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!--  Delete Modal  -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Data Mahasiswa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah kamu yakin untuk menghapus data?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="<?= BASE_URL ?>Mahasiswa/delete" class="btn btn-primary">Delete Data</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Detail Modal  -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Detail Data Mahasiswa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="detail_nim">NIM</label>
+                        <input type="text" class="form-control" disabled id="detail_nim" name="nim">
+                    </div>
+                    <div class="form-group">
+                        <label for="detail_nama">Nama</label>
+                        <input type="text" class="form-control" disabled id="detail_nama" name="nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="detail_jurusan">Jurusan</label>
+                        <input class="form-control" disabled id="detail_jurusan" name="jurusan">
+                    </div>
+                    <div class="form-group">
+                        <label for="detail_angkatan">Angkatan</label>
+                        <input type="number" class="form-control" disabled id="detail_angkatan" name="angkatan">
+                    </div>
+                    <div class="custom-file">
+                        <label for="detail_foto">Foto</label>
+                        <img src="" alt="" class="img-fluid" width="250" id="detail_foto">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

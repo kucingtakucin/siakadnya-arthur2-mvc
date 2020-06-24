@@ -22,14 +22,21 @@ class MahasiswaModel extends Model {
      * @param $id
      * @return int
      */
-    public function save($id): int {
+    public function save(): int {
         $query = "UPDATE {$this->tableName} SET nama = :nama, nim = :nim, jurusan = :jurusan, angkatan = :angkatan, foto = :foto WHERE id = :id";
         $this->db->query($query);
         $this->db->bind('nama', $_POST['nama']);
         $this->db->bind('nim', $_POST['nim']);
         $this->db->bind('jurusan', $_POST['jurusan']);
         $this->db->bind('angkatan', $_POST['angkatan']);
-        $this->db->bind('foto', $this->upload_image());
+        $fotolama = $_POST['fotolama'];
+        if ($_FILES['foto']['error'] === 4) {
+            $fotobaru = $fotolama;
+        } else {
+            $fotobaru = $this->upload_image();
+        }
+        $this->db->bind('foto', $fotobaru);
+        $this->db->bind('id', $_POST['id']);
         $this->db->execute();
         return $this->db->rowCount();
     }
