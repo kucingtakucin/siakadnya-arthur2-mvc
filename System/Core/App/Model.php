@@ -5,6 +5,9 @@ abstract class Model {
     protected Database $db;
     protected string $tableName;
 
+    /**
+     * Model constructor.
+     */
     public function __construct(){
         $this->db = new Database();
         if (isset($_SERVER['REDIRECT_URL'])):
@@ -12,12 +15,19 @@ abstract class Model {
         endif;
     }
 
+    /**
+     * @return array
+     */
     public function all(): array {
         $query = "SELECT * FROM {$this->tableName}";
         $this->db->query($query);
         return $this->db->fetchAll();
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function single($id): array {
         $query = "SELECT * FROM {$this->tableName} WHERE id = :id";
         $this->db->query($query);
@@ -25,4 +35,26 @@ abstract class Model {
         return $this->db->fetch();
     }
 
+    /**
+     * @return int
+     */
+    abstract public function add(): int;
+
+    /**
+     * @param $id
+     * @return int
+     */
+    abstract public function save($id): int;
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function remove($id): int {
+        $query = "DELETE FROM {$this->tableName} WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
 }

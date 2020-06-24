@@ -42,16 +42,37 @@
                         <td class="d-flex flex-column align-items-center justify-content-center">
                             <h5><a href="<?= BASE_URL ?>Mahasiswa/detail/<?= $student['id'] ?>" class="badge badge-info mb-2 mt-3">Detail</a></h5>
                             <h5><a href="<?= BASE_URL ?>Mahasiswa/update/<?= $student['id'] ?>" class="badge badge-warning mt-2 mb-2">Update</a></h5>
-                            <h5><a href="<?= BASE_URL ?>Mahasiswa/delete/<?= $student['id'] ?>" class="badge badge-danger mt-2">Delete</a></h5>
+                            <h5><button type="button" class="btn badge badge-danger mt-2" data-toggle="modal" data-target="#deleteModal<?= $i ?>">Delete</button></h5>
                         </td>
                     </tr>
+
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="deleteModal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?= $i ?>Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModal<?= $i ?>Label">Delete Data Mahasiswa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Apakah kamu yakin untuk menghapus data?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="<?= BASE_URL ?>Mahasiswa/delete/<?= $student['id'] ?>" class="btn btn-primary">Delete Data</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <?php $i++; endforeach ?>
                 </tbody>
             </table>
         </section>
     </div>
 
-    <!-- Modal -->
+    <!-- Insert Modal -->
     <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

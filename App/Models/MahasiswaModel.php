@@ -3,7 +3,10 @@ use Core\App\Model;
 
 class MahasiswaModel extends Model {
 
-    public function add(){
+    /**
+     * @return int
+     */
+    public function add(): int {
         $query = "INSERT INTO {$this->tableName} (nama, nim, jurusan, angkatan, foto) VALUES (:nama, :nim, :jurusan, :angkatan, :foto)";
         $this->db->query($query);
         $this->db->bind('nama', $_POST['nama']);
@@ -15,6 +18,25 @@ class MahasiswaModel extends Model {
         return $this->db->rowCount();
     }
 
+    /**
+     * @param $id
+     * @return int
+     */
+    public function save($id): int {
+        $query = "UPDATE {$this->tableName} SET nama = :nama, nim = :nim, jurusan = :jurusan, angkatan = :angkatan, foto = :foto WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('nama', $_POST['nama']);
+        $this->db->bind('nim', $_POST['nim']);
+        $this->db->bind('jurusan', $_POST['jurusan']);
+        $this->db->bind('angkatan', $_POST['angkatan']);
+        $this->db->bind('foto', $this->upload_image());
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    /**
+     * @return string
+     */
     public function upload_image(): string {
         $filename = $_FILES['foto']['name'];
         $filesize = $_FILES['foto']['size'];

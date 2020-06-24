@@ -14,18 +14,26 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand font-weight-bold" href="<?= BASE_URL ?>">Arthur</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="<?= BASE_URL ?>">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="<?= BASE_URL ?>About">About</a>
-                    <a class="nav-item nav-link" href="<?= BASE_URL ?>Mahasiswa">Mahasiswa</a>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= BASE_URL ?>">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= BASE_URL ?>About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= BASE_URL ?>Mahasiswa">Mahasiswa</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="login.php" class="btn btn-outline-success mt-0 mb-0 mr-2">Login</a>
+                    <a href="register.php" class="btn btn-outline-primary mt-0 mb-0 ml-2">Register</a>
+                </span>
             </div>
-            <a href="login.php" class="btn btn-outline-success mr-2">Login</a>
-            <a href="register.php" class="btn btn-outline-primary ml-2">Register</a>
         </div>
     </nav>
 </header>

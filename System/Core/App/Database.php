@@ -8,7 +8,8 @@ class Database {
     private string $username = 'root';
     private string $password = 'namaku123';
     private string $database = 'phpdasar';
-    private $db_handler, $statement;
+    private PDO $db_handler;
+    private object $statement;
 
     /**
      * Database constructor.

@@ -24,7 +24,7 @@ class MahasiswaController extends Controller {
         $this->view('detail', $data);
     }
 
-    public function insert(){
+    public function insert(): void {
         try {
             if ($this->model()->add() > 0):
                 Flasher::set('berhasil', 'ditambahkan', 'success');
@@ -41,11 +41,44 @@ class MahasiswaController extends Controller {
         }
     }
 
-    public function update(){
+    /**
+     * @param $id
+     */
+    public function update($id): void {
+        try {
+            if ($this->model()->save($id) > 0):
+                Flasher::set('berhasil', 'ditambahkan', 'success');
+                header('Location: ' . BASE_URL . 'Mahasiswa');
+                exit(0);
+            else:
+                Flasher::set('gagal', 'ditambahkan', 'danger');
+                header('Location: ' . BASE_URL . 'Mahasiswa');
+                exit(0);
+            endif;
+        } catch (Exception $exception) {
+            echo "<h1>{$exception->getMessage()}</h1>";
+            die;
+        }
 
     }
 
-    public function delete(){
-
+    /**
+     * @param $id
+     */
+    public function delete($id): void {
+        try {
+            if ($this->model()->remove($id) > 0):
+                Flasher::set('berhasil', 'dihapus', 'success');
+                header('Location: ' . BASE_URL . 'Mahasiswa');
+                exit(0);
+            else:
+                Flasher::set('gagal', 'dihapus', 'danger');
+                header('Location: ' . BASE_URL . 'Mahasiswa');
+                exit(0);
+            endif;
+        } catch (Exception $exception) {
+            echo "<h1>{$exception->getMessage()}</h1>";
+            die;
+        }
     }
 }
