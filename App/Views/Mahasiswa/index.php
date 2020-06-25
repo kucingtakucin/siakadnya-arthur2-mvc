@@ -10,6 +10,7 @@
             <h1 class="display-4 text-center font-weight-bold">
                 Daftar Mahasiswa
             </h1>
+            <h4 class="text-muted mt-0 mb-3 text-center">Selamat datang, <?= $_SESSION['username'] ?>. Status: <?php if ($_SESSION['role'] === '0'): ?>User<?php else: ?>Admin<?php endif ?></h4>
             <button type="button" class="btn btn-primary d-block m-auto font-weight-bold insert" data-toggle="modal" data-target="#formModal">
             Insert
             </button>
@@ -55,8 +56,8 @@
                         <td><p><?= $student['angkatan'] ?></p></td>
                         <td class="d-flex flex-column align-items-center justify-content-center">
                             <h5><button type="button" class="btn badge badge-info mb-2 mt-3 detail" data-toggle="modal" data-target="#detailModal" data-id="<?= $student['id'] ?>">Detail</button></h5>
-                            <h5><a href="<?= BASE_URL ?>Mahasiswa/update/<?= $student['id'] ?>" class="badge badge-warning mt-2 mb-2 update" data-toggle="modal" data-target="#formModal" data-id="<?= $student['id'] ?>">Update</a></h5>
-                            <h5><button type="button" class="btn badge badge-danger mt-2 delete" data-toggle="modal" data-target="#deleteModal" data-id="<?= $student['id'] ?>">Delete</button></h5>
+                            <h5><a <?php if($_SESSION['role'] === '1'): ?>href="<?= BASE_URL ?>Mahasiswa/update/<?= $student['id'] ?>"<?php endif ?> class="badge badge-warning mt-2 mb-2 <?php if($_SESSION['role'] === '1'): ?>update<?php endif ?>" <?php if($_SESSION['role'] === '1'): ?>data-toggle="modal" data-target="#formModal" data-id="<?= $student['id'] ?>"<?php endif ?>>Update</a></h5>
+                            <h5><button type="button" class="btn badge badge-danger mt-2 delete" <?php if($_SESSION['role'] === '1'): ?>data-toggle="modal" data-target="#deleteModal" data-id="<?= $student['id'] ?>"<?php endif ?>>Delete</button></h5>
                         </td>
                     </tr>
                     <?php $i++; endforeach ?>
