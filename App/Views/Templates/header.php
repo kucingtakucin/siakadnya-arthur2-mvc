@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= /** @var array $data */ $data['title'] ?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>Public/css/style.css">
 </head>
 <body>
 <header>
@@ -30,8 +30,12 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a href="login.php" class="btn btn-outline-success mt-0 mb-0 mr-2">Login</a>
-                    <a href="register.php" class="btn btn-outline-primary mt-0 mb-0 ml-2">Register</a>
+                    <?php if(isset($_SESSION['login'])): ?>
+                    <a href="index/logout" class="btn btn-outline-primary mt-0 mb-0">Logout</a>
+                    <?php else: ?>
+                    <a href="Login" class="btn btn-outline-success mt-0 mb-0 mr-2">Login</a>
+                    <a href="Register" class="btn btn-outline-primary mt-0 mb-0 ml-2">Register</a>
+                    <?php endif ?>
                 </span>
             </div>
         </div>

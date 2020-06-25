@@ -41,7 +41,7 @@ $(document).ready(function () {
             $('#jurusan').val(response.jurusan)
             $('#angkatan').val(response.angkatan)
             $('#formModal label[for=foto]').append(`
-                <img src="http://localhost/phpmvc/img/${response.foto}" alt="${response.nama}" class="img-fluid foto-lama" width="250px">
+                <img src="http://localhost/phpmvc/Public/img/${response.foto}" alt="${response.nama}" class="img-fluid foto-lama" width="250px">
                 <input type="hidden" name="fotolama" value="${response.foto}">
                 <input type="hidden" name="id" value="${response.id}">
             `)
@@ -73,7 +73,7 @@ $(document).ready(function () {
             $('#detail_nim').val(response.nim)
             $('#detail_jurusan').val(response.jurusan)
             $('#detail_angkatan').val(response.angkatan)
-            $('#detailModal img').attr({src: `http://localhost/phpmvc/img/${response.foto}`, alt: `${response.nama}`})
+            $('#detailModal img').attr({src: `http://localhost/phpmvc/Public/img/${response.foto}`, alt: `${response.nama}`})
         })
     })
 })

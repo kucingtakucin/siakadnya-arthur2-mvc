@@ -3,9 +3,10 @@ namespace Core\Helper;
 
 class Flasher {
 
-    public static function set($message, $action, $type){
+    public static function set($message, $info , $action, $type){
         $_SESSION['flash'] = [
             'message' => $message,
+            'info' => $info,
             'action' => $action,
             'type' => $type,
         ];
@@ -15,7 +16,7 @@ class Flasher {
         if (isset($_SESSION['flash'])):
             echo '
             <div class="alert alert-' . $_SESSION['flash']['type'] .' alert-dismissible fade show" role="alert">
-                Data Mahasiswa <strong>' . $_SESSION['flash']['message'] . '</strong> ' . $_SESSION['flash']['action'] . '
+                '. $_SESSION['flash']['message'] .' <strong>' . $_SESSION['flash']['info'] . '</strong> ' . $_SESSION['flash']['action'] . '
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

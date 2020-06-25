@@ -48,7 +48,7 @@
                 foreach ($data['mahasiswa'] as $student):?>
                     <tr>
                         <th scope="row"><?= $i ?></th>
-                        <td><img src="<?= BASE_URL ?>img/<?= $student['foto'] ?>" alt="<?= $student['nama']?>" width="100" class="img-fluid"></td>
+                        <td><img src="<?= BASE_URL ?>Public/img/<?= $student['foto'] ?>" alt="<?= $student['nama']?>" width="100" class="img-fluid"></td>
                         <td><p><?= $student['nama'] ?></p></td>
                         <td><p><?= $student['nim'] ?></p></td>
                         <td><p><?= $student['jurusan'] ?></p></td>

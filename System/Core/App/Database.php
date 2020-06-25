@@ -82,4 +82,8 @@ class Database {
     public function rowCount(): int {
         return $this->statement->rowCount();
     }
+
+    public function quote(string $string): string {
+        return $this->db_handler->quote($string);
+    }
 }

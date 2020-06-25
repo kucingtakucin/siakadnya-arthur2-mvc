@@ -1,4 +1,5 @@
 <?php
+//if (isset($_SERVER['CONTEXT_PREFIX']))
 define("BASE_URL", "http://{$_SERVER['SERVER_NAME']}{$_SERVER['CONTEXT_PREFIX']}");
 
 spl_autoload_register(static function ($class) {
